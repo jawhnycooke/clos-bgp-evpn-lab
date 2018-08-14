@@ -12,7 +12,7 @@
 - name: CREATE L3 IP INTERFACES
   nxos_l3_interface:
     name: "{{ item.interface }}"
-    ipv4: "{{ item.addr }}"/"{{ item.mask }}"
+    ipv4: "{{ item.addr }}"\/"{{ item.mask }}"
     state: present
   with_items:
     - "{{ l3_interfaces }}"
