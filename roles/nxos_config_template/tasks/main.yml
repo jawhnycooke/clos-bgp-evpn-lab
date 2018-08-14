@@ -9,26 +9,26 @@
   nxos_evpn_global:
     nv_overlay_evpn: true
 
-- name: CREATE L3 IP INTERFACES
-  nxos_l3_interface:
-    name: "{{ item.interface }}"
-    ipv4: "{{ item.addr }}"\/"{{ item.mask }}"
-    state: present
-  with_items:
-    - "{{ l3_interfaces }}"
+#- name: CREATE L3 IP INTERFACES
+#  nxos_l3_interface:
+#    name: "{{ item.interface }}"
+#    ipv4: "{{ item.addr }}"/"{{ item.mask }}"
+#    state: present
+#  with_items:
+#    - "{{ l3_interfaces }}"
 
-- name: ENABLE OSPF
-  nxos_ospf:
-    ospf: "{{ ospf_proc_id }}"
-    state: present
+#- name: ENABLE OSPF
+#  nxos_ospf:
+#    ospf: "{{ ospf_proc_id }}"
+#    state: present
 
-- name: ADD INTERFACES TO OSPF
-  nxos_interface_ospf:
-    interface: "{{ item.interface }}"
-    ospf: "{{ ospf_proc_id }}"
-    area: "{{ ospf_area }}"
-  with_items:
-    - "{{ l3_interfaces }}"
+#- name: ADD INTERFACES TO OSPF
+#  nxos_interface_ospf:
+#    interface: "{{ item.interface }}"
+#    ospf: "{{ ospf_proc_id }}"
+#    area: "{{ ospf_area }}"
+#  with_items:
+#    - "{{ l3_interfaces }}"
 
 #- name: ASSIGN ANYCAST GATEWAY
 #  nxos_overlay_global:
