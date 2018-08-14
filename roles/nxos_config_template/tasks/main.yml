@@ -42,7 +42,7 @@
 
 - name: SET DOMAIN NAME
   nxos_system:
-    domain_name: "{{ domain.name }}"
+    domain_name: "{{ domain_name }}"
 
 - name: DNS SERVER HOST CONFIGURATION
   nxos_system:

@@ -3,8 +3,7 @@ ansible_connection: network_cli
 ansible_user: admin
 ansible_ssh_pass: admin
 
-domain:
-  - { name: mylab.com }
+domain_name: mylab.com
 
 name_servers:
   - { server: 8.8.8.8, vrf: management }
