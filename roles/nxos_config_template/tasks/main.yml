@@ -11,22 +11,22 @@
 
 - name: CREATE L3 IP INTERFACES
   nxos_l3_interface:
-    name: {{ item.interface }}
-    ipv4: {{ item.addr }}/{{ item.mask }}
+    name: "{{ item.interface }}"
+    ipv4: "{{ item.addr }}"/"{{ item.mask }}"
     state: present
   with_items:
     - "{{ l3_interfaces }}"
 
 - name: ENABLE OSPF
   nxos_ospf:
-    ospf: {{ ospf_proc_id }}
+    ospf: "{{ ospf_proc_id }}"
     state: present
 
 - name: ADD INTERFACES TO OSPF
   nxos_interface_ospf:
-    interface: {{ item.interface }}
-    ospf: {{ ospf_proc_id }}
-    area: {{ ospf_area }}
+    interface: "{{ item.interface }}"
+    ospf: "{{ ospf_proc_id }}"
+    area: "{{ ospf_area }}"
   with_items:
     - "{{ l3_interfaces }}"
 
@@ -42,13 +42,13 @@
 
 - name: SET DOMAIN NAME
   nxos_config:
-    lines: 'ip domain-name {{ domain.name }}'
+    lines: 'ip domain-name "{{ domain.name }}"'
     force: yes
 
 - name: DNS SERVER HOST CONFIGURATION
   nxos_config:
     lines:
-      - 'ip name-server {{ item.server }} use-vrf {{ item.vrf }}'
+      - 'ip name-server "{{ item.server }}" use-vrf "{{ item.vrf }}"'
     force: yes
   with_items:
     - "{{ name_servers }}"
@@ -60,8 +60,8 @@
 - name: Logging Configuration
   nxos_config:
     lines:
-      - 'logging server {{ item.server }} {{ item.log_level }} use-vrf {{ item.vrf }} facility {{ item.facility }}'
-      - 'logging source-interface {{ item.source }}'
+      - 'logging server "{{ item.server }}" "{{ item.log_level }}" use-vrf "{{ item.vrf }}" facility "{{ item.facility }}"'
+      - 'logging source-interface "{{ item.source }}"'
     force: yes
   with_items:
   - "{{ logging }}"
