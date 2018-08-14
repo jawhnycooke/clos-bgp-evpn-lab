@@ -8,7 +8,6 @@ features:
   - { feature:  pim }
   - { feature:  interface-vlan }
   - { feature:  hsrp }
-  - { feature:  udld }
   - { feature:  dhcp }
   - { feature:  lldp }
   - { feature:  bfd }
