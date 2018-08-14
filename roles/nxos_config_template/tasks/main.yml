@@ -9,14 +9,36 @@
   nxos_evpn_global:
     nv_overlay_evpn: true
 
-- name: ASSIGN ANYCAST GATEWAY
-  nxos_overlay_global:
-    anycast_gateway_mac: "000E.000E.000E"
+- name: CREATE L3 IP INTERFACES
+  nxos_l3_interface:
+    name: {{ item.interface }}
+    ipv4: {{ item.addr }}/{{ item.mask }}
+    state: present
+  with_items:
+    - "{{ l3_interfaces }}"
 
-- name: Assign Anycast GW
-  nxos_config:
-    lines: 
-      - 'fabric forwarding anycast-gateway-mac DEAD.BEEF.CAFE'
+- name: ENABLE OSPF
+  nxos_ospf:
+    ospf: {{ ospf_proc_id }}
+    state: present
+
+- name: ADD INTERFACES TO OSPF
+  nxos_interface_ospf:
+    interface: {{ item.interface }}
+    ospf: {{ ospf_proc_id }}
+    area: {{ ospf_area }}
+  with_items:
+    - "{{ l3_interfaces }}"
+
+#- name: ASSIGN ANYCAST GATEWAY
+#  nxos_overlay_global:
+#    anycast_gateway_mac: "000E.000E.000E"
+
+#- name: Assign Anycast GW
+#  nxos_config:
+#    lines: 
+#      - 'fabric forwarding anycast-gateway-mac 0000.2222.3333'
+#  when: role == "leaf"
 
 - name: SET DOMAIN NAME
   nxos_config:
@@ -55,41 +77,43 @@
 #  with_items: "{{ acls }}"
 
 
-- name: Ensure BGP ASN exists
-  nxos_bgp:
-    asn: "{{ bgp_asn }}"
-    router_id: "{{ bgp_router_id }}"
-    state: present
+#- name: Ensure BGP ASN exists
+#  nxos_bgp:
+#    asn: "{{ bgp_asn }}"
+#    router_id: "{{ bgp_router_id }}"
+#    state: present
 
-- name: BASE BGP AF CONFIG
-  nxos_bgp_af:
-    asn: "{{ bgp_asn }}"
-    afi: "{{ item.afi }}"
-    safi: "{{ item.safi }}"
-  with_items: "{{ bgp_address_families }}"
+#- name: BASE BGP AF CONFIG
+#  nxos_bgp_af:
+#    asn: "{{ bgp_asn }}"
+#    afi: "{{ item.afi }}"
+#    safi: "{{ item.safi }}"
+#  with_items: "{{ bgp_address_families }}"
 
-- name: BASE NEIGHBOR CONFIG
-  nxos_bgp_neighbor:
-    asn: "{{ bgp_asn }}"
-    neighbor: "{{ item.neighbor }}"
-    remote_as: "{{ item.remote_as }}"
-    state: present
-  with_items: "{{ bgp_neighbors }}"
+#- name: BASE NEIGHBOR CONFIG
+#  nxos_bgp_neighbor:
+#    asn: "{{ bgp_asn }}"
+#    neighbor: "{{ item.neighbor }}"
+#    remote_as: "{{ item.remote_as }}"
+#    state: present
+#  with_items: "{{ bgp_neighbors }}"
 
-- name: CONFIGURE IPV4 UNICAST ADDRESS FAMILY
-  nxos_bgp_neighbor_af:
-    asn: "{{ bgp_asn }}"
-    neighbor: "{{ item.neighbor }}"
-    afi: ipv4
-    safi: unicast
-    state: present
-  with_items: "{{ bgp_neighbors }}"
+#- name: CONFIGURE IPV4 UNICAST ADDRESS FAMILY
+#  nxos_bgp_neighbor_af:
+#    asn: "{{ bgp_asn }}"
+#    neighbor: "{{ item.neighbor }}"
+#    afi: ipv4
+#    safi: unicast
+#    state: present
+#  with_items: "{{ bgp_neighbors }}"
+#  when: role == "leaf"
 
-- name: CONFIGURE IPV4 UNICAST ADDRESS FAMILY
-  nxos_bgp_neighbor_af:
-    asn: "{{ bgp_asn }}"
-    neighbor: "{{ item.neighbor }}"
-    afi: l2vpn
-    safi: evpn
-    send_community: extended
-  with_items: "{{ bgp_neighbors }}"
+#- name: CONFIGURE L2VPN UNICAST ADDRESS FAMILY
+#  nxos_bgp_neighbor_af:
+#    asn: "{{ bgp_asn }}"
+#    neighbor: "{{ item.neighbor }}"
+#    afi: l2vpn
+#    safi: evpn
+#    send_community: both
+#    route_reflector_client: true
+#  with_items: "{{ bgp_neighbors }}"

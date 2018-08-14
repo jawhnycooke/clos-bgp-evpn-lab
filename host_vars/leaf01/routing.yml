@@ -1,0 +1,34 @@
+---
+role: leaf
+
+bgp_asn: 65535
+bgp_router_id: 30.1.1.1
+
+bgp_address_families:
+  - { afi: ipv4, safi: unicast }
+  - { afi: l2vpn, safi: evpn }
+
+bgp_neighbors:
+  - { remote_as: 65535, neighbor: 10.1.1.1, update_source: "loopback0", afi: l2vpn, safi: evpn, send_community: "both", rr_client: true }
+  - { remote_as: 65535, neighbor: 20.1.1.1, update_source: "loopback0", afi: l2vpn, safi: evpn, send_community: "both", rr_client: true }
+
+bgp_inerfaces:  
+  - { interface: vrf vxlan-900001, afi: ipv4, safi: unicast }
+
+# nxos_ospf #
+ospf_proc_id: 1
+# nxos_interface_ospf #
+ospf_area: 0.0.0.0
+ospf_interfaces:
+  - { interface: "Loopback0" }
+  - { interface: "Ethernet2/14" }
+  - { interface: "Ethernet2/15" }
+
+pim_ssm_range: "232.0.0.0"
+pim_ssm_mask: "8"
+pim_rp_address: "100.1.1.1"
+
+## module nxos_evpn_vni ##
+evpn:                                       
+  - {vni: "2001001", rd: auto, rt_both: "auto" }
+  - {vni: "2001002", rd: auto, rt_both: "auto" }
