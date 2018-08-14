@@ -40,6 +40,15 @@
   with_items:
     - "{{ l3_interfaces }}"
 
+- name: CREATE L2 INTERFACES
+  nxos_l3_interface:
+    name: "{{ item.interface }}"
+    mode: "{{ item.mode }}"
+    access_vlan: "{{ item.access_vlan }}"
+    state: present
+  with_items:
+    - "{{ l2_interfaces }}"
+
 #- name: ENABLE OSPF
 #  nxos_ospf:
 #    ospf: "{{ ospf_proc_id }}"
