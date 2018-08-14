@@ -47,7 +47,6 @@
 - name: DNS SERVER HOST CONFIGURATION
   nxos_system:
     name_servers: "{{ item.server }}"
-    vrf: "{{ item.vrf }}"
     force: yes
   with_items:
     - "{{ name_servers }}"
