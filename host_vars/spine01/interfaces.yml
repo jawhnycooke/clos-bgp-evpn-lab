@@ -1,0 +1,20 @@
+---
+l3_interfaces:
+   - { interface: "mgmt0", description: "MTGT SWITCH Ethernet2", addr: "10.88.0.22", mask: "32" }
+   - { interface: "Loopback0", description: "Loopback0 for local VTEP IP, and BGP", addr: "10.1.1.1", mask: "32" }
+   - { interface: "Loopback1", description: "Loopback1 for Anycast RP", addr: "100.1.1.1", mask: "32" }
+   - { interface: "Ethernet2/1", description: "Spine-leaf interconnect leaf01", addr: "192.168.1.42", mask: "24" }
+   - { interface: "Ethernet2/2", description: "Spine-leaf interconnect leaf02", addr: "192.168.2.43", mask: "24" }
+   - { interface: "Ethernet2/3", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/4", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/5", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/6", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/7", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/8", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/9", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/10", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/11", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/12", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/13", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/14", description: "", addr: "", mask: "" }
+   - { interface: "Ethernet2/15", description: "", addr: "", mask: "" }

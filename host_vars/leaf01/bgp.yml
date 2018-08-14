@@ -1,0 +1,11 @@
+---
+bgp_asn: 65535
+bgp_router_id: 30.1.1.1
+
+bgp_address_families:
+  - { afi: ipv4, safi: unicast }
+  - { afi: l2vpn, safi: evpn }
+
+bgp_neighbors:
+  - { remote_as: 65535, neighbor: 10.1.1.1 }
+  - { remote_as: 65535, neighbor: 20.1.1.1 }
