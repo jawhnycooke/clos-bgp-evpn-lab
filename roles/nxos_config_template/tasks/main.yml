@@ -41,14 +41,13 @@
 #  when: role == "leaf"
 
 - name: SET DOMAIN NAME
-  nxos_config:
-    lines: 'ip domain-name "{{ domain.name }}"'
-    force: yes
+  nxos_system:
+    domain_name: "{{ domain.name }}"
 
 - name: DNS SERVER HOST CONFIGURATION
-  nxos_config:
-    lines:
-      - 'ip name-server "{{ item.server }}" use-vrf "{{ item.vrf }}"'
+  nxos_system:
+    name_servers: "{{ item.server }}"
+    vrf: "{{ item.vrf }}"
     force: yes
   with_items:
     - "{{ name_servers }}"
@@ -57,14 +56,14 @@
   nxos_system:
     system_mtu: 9216
 
-- name: Logging Configuration
-  nxos_config:
-    lines:
-      - 'logging server "{{ item.server }}" "{{ item.log_level }}" use-vrf "{{ item.vrf }}" facility "{{ item.facility }}"'
-      - 'logging source-interface "{{ item.source }}"'
-    force: yes
-  with_items:
-  - "{{ logging }}"
+#- name: Logging Configuration
+#  nxos_config:
+#    lines:
+#      - 'logging server "{{ item.server }}" "{{ item.log_level }}" use-vrf "{{ item.vrf }}" facility "{{ item.facility }}"'
+#      - 'logging source-interface "{{ item.source }}"'
+#    force: yes
+#  with_items:
+#  - "{{ logging }}"
 
 #- name: Create ACL
 #  nxos_acl:
