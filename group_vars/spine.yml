@@ -7,8 +7,6 @@ features:
   - { feature:  bgp }
   - { feature:  pim }
   - { feature:  interface-vlan }
-  - { feature:  hsrp }
-  - { feature:  dhcp }
   - { feature:  lldp }
   - { feature:  bfd }
   - { feature:  nv overlay }
