@@ -54,7 +54,7 @@
   nxos_vlan:
     vlan_range: "1-1002"
     state: present
-    when: role == "leaf"
+  when: role == "leaf"
 
 - name: CONFIGURE INTERFACES AS L2
   nxos_interface:
