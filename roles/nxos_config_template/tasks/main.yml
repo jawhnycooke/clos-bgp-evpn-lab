@@ -50,17 +50,16 @@
   with_items:
     - "{{ l3_interfaces }}"
 
-- name: Ensure a range of VLANs are present on the switch
-  nxos_vlan:
-    vlan_range: "1-1002"
-    state: present
-  when: role == "leaf"
+#- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE SWITCH
+#  nxos_vlan:
+#    vlan_range: "1-1002"
+#    state: present
+#  when: role == "leaf"
 
-- name: Add Server interfaces to VLANs and check intent (config + intent)
+- name: ADD SERVER INTERFACES TO VLANs
   nxos_vlan:
     vlan_id: "{{ item.access_vlan }}"
     interfaces: "{{ item.name }}"
-    associated_interfaces: "{{ item.name }}"
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
