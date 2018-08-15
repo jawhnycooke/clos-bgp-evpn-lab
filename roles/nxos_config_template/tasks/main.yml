@@ -23,6 +23,7 @@
   nxos_system:
     system_mtu: 9216
 
+
 #- name: Logging Configuration
 #  nxos_config:
 #    lines:
@@ -35,6 +36,7 @@
 - name: CONFIGURE INTERFACES AS L3
   nxos_interface:
     name: "{{ item.interface }}"
+    description: "{{ item.description }}"
     mode: layer3
   with_items:
     - "{{ l3_interfaces }}"
@@ -51,33 +53,34 @@
 - name: CONFIGURE INTERFACES AS L2
   nxos_interface:
     name: "{{ item.interface }}"
+    description: "{{ item.description }}"
     mode: layer2
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
 
-- name: CREATE L2 INTERFACES
-  nxos_l2_interface:
-    name: "{{ item.interface }}"
-    mode: "{{ item.mode }}"
-    access_vlan: "{{ item.access_vlan }}"
-    state: present
-  with_items:
-    - "{{ l2_interfaces }}"
-  when: role == "leaf"
-
-#- name: ENABLE OSPF
-#  nxos_ospf:
-#    ospf: "{{ ospf_proc_id }}"
+#- name: CREATE L2 INTERFACES
+#  nxos_l2_interface:
+#    name: "{{ item.interface }}"
+#    mode: "{{ item.mode }}"
+#    access_vlan: "{{ item.access_vlan }}"
 #    state: present
-
-#- name: ADD INTERFACES TO OSPF
-#  nxos_interface_ospf:
-#    interface: "{{ item.interface }}"
-#    ospf: "{{ ospf_proc_id }}"
-#    area: "{{ ospf_area }}"
 #  with_items:
-#    - "{{ l3_interfaces }}"
+#    - "{{ l2_interfaces }}"
+#  when: role == "leaf"
+
+- name: ENABLE OSPF
+  nxos_ospf:
+    ospf: "{{ ospf_proc_id }}"
+    state: present
+
+- name: ADD L3 INTERFACES TO OSPF
+  nxos_interface_ospf:
+    interface: "{{ item.interface }}"
+    ospf: "{{ ospf_proc_id }}"
+    area: "{{ ospf_area }}"
+  with_items:
+    - "{{ l3_interfaces }}"
 
 #- name: ASSIGN ANYCAST GATEWAY
 #  nxos_overlay_global:
