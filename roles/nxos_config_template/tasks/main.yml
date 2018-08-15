@@ -32,6 +32,21 @@
 #  with_items:
 #  - "{{ logging }}"
 
+- name: CONFIGURE INTERFACES AS L3
+  nxos_interface:
+    name: "{{ item.interface }}"
+    mode: layer3
+  with_items:
+    - "{{ l3_interfaces }}"
+
+### FIGURE OUT HOW TO ADD IPV6 ADDRS ###
+- name: CREATE L3 IP INTERFACES
+  nxos_l3_interface:
+    name: "{{ item.interface }}"
+    ipv4: "{{ item.ipv4 }}"
+    state: present
+  with_items:
+    - "{{ l3_interfaces }}"
 
 - name: CONFIGURE INTERFACES AS L2
   nxos_interface:
@@ -50,22 +65,6 @@
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
-
-- name: CONFIGURE INTERFACES AS L3
-  nxos_interface:
-    name: "{{ item.interface }}"
-    mode: layer3
-  with_items:
-    - "{{ l3_interfaces }}"
-
-### FIGURE OUT HOW TO ADD IPV6 ADDRS ###
-- name: CREATE L3 IP INTERFACES
-  nxos_l3_interface:
-    name: "{{ item.interface }}"
-    ipv4: "{{ item.ipv4 }}"
-    state: present
-  with_items:
-    - "{{ l3_interfaces }}"
 
 #- name: ENABLE OSPF
 #  nxos_ospf:
