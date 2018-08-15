@@ -41,6 +41,14 @@
   with_items:
     - "{{ l3_interfaces }}"
 
+- name: CONFIGURE INTERFACES AS L2
+  nxos_interface:
+    name: "{{ item.interface }}"
+    mode: layer2
+  with_items:
+    - "{{ l2_interfaces }}"
+  when: role == "leaf"
+
 - name: CREATE L2 INTERFACES
   nxos_l2_interface:
     name: "{{ item.interface }}"
@@ -49,6 +57,7 @@
     state: present
   with_items:
     - "{{ l2_interfaces }}"
+  when: role == "leaf"
 
 #- name: ENABLE OSPF
 #  nxos_ospf:
