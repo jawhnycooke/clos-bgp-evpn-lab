@@ -41,13 +41,6 @@
     - "{{ l2_interfaces }}"
   when: role == "leaf"
 
-- name: CONFIGURE INTERFACES AS L3
-  nxos_interface:
-    name: "{{ item.interface }}"
-    mode: layer3
-  with_items:
-    - "{{ l3_interfaces }}"
-
 - name: CREATE L2 INTERFACES
   nxos_l2_interface:
     name: "{{ item.interface }}"
@@ -57,6 +50,13 @@
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
+
+- name: CONFIGURE INTERFACES AS L3
+  nxos_interface:
+    name: "{{ item.interface }}"
+    mode: layer3
+  with_items:
+    - "{{ l3_interfaces }}"
 
 ### FIGURE OUT HOW TO ADD IPV6 ADDRS ###
 - name: CREATE L3 IP INTERFACES
