@@ -42,7 +42,7 @@
     - "{{ l3_interfaces }}"
 
 - name: CREATE L2 INTERFACES
-  nxos_l3_interface:
+  nxos_l2_interface:
     name: "{{ item.interface }}"
     mode: "{{ item.mode }}"
     access_vlan: "{{ item.access_vlan }}"
