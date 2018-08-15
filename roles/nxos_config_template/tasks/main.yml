@@ -94,12 +94,21 @@
     ospf: "{{ ospf_proc_id }}"
     area: "{{ ospf_area }}"
   with_items:
-    - "{{ l3_interfaces }}"
+    - "{{ ospf_interfaces }}"
 
 - name: ASSIGN ANYCAST GATEWAY
   nxos_overlay_global:
     anycast_gateway_mac: "0000.2222.3333"
   when: role == "leaf"
+
+- name: CONFIGURE SVI INTERFACES AS ANYCAST GATEWAYS
+  nxos_interface:
+    name: "{{ item.interface }}"
+    fabric_forwarding_anycast_gateway: yes
+  with_items:
+    - "{{ anycast_gw_interfaces }}"
+  when: role == "leaf"
+
 
 #- name: Assign Anycast GW
 #  nxos_config:
@@ -157,3 +166,5 @@
     send_community: both
     route_reflector_client: true
   with_items: "{{ bgp_neighbors }}"
+
+

@@ -12,3 +12,7 @@ l3_interfaces:
   - { interface: "Ethernet2/15", description: "Spine-leaf interconnect spine02", ipv4: "192.168.3.23/24" }
   - { interface: "Vlan1001", description: "Server facing SVI", ipv4: "4.1.1.1/24", ipv6: "4:1:0:1::1/64" }
   - { interface: "Vlan1002", description: "Server facing SVI", ipv4: "4.2.2.1/24", ipv6: "4:2:0:1::1/64" }
+
+anycast_gw_interfaces:
+  - { interface: "Vlan1001" }
+  - { interface: "Vlan1002" }

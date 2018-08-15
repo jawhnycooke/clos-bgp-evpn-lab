@@ -22,9 +22,9 @@ ospf_interfaces:
 # nxos_pim #
 pim_ssm_range: "232.0.0.0"
 pim_ssm_mask: "8"
-
 # nxos_pim_rp_address #
 pim_rp_address: "100.1.1.1"
+# nxos_pim_rp_address #
 pim_group-list: "224.0.0.0"
 pim_group-list_mask: "4"
 
