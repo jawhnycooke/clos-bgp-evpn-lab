@@ -50,6 +50,12 @@
   with_items:
     - "{{ l3_interfaces }}"
 
+- name: Ensure a range of VLANs are present on the switch
+  nxos_vlan:
+    vlan_range: "1-1002"
+    state: present
+    when: role == "leaf"
+
 - name: CONFIGURE INTERFACES AS L2
   nxos_interface:
     name: "{{ item.interface }}"
@@ -59,15 +65,15 @@
     - "{{ l2_interfaces }}"
   when: role == "leaf"
 
-#- name: CREATE L2 INTERFACES
-#  nxos_l2_interface:
-#    name: "{{ item.interface }}"
-#    mode: "{{ item.mode }}"
-#    access_vlan: "{{ item.access_vlan }}"
-#    state: present
-#  with_items:
-#    - "{{ l2_interfaces }}"
-#  when: role == "leaf"
+- name: CREATE L2 INTERFACES
+  nxos_l2_interface:
+    name: "{{ item.interface }}"
+    mode: "{{ item.mode }}"
+    access_vlan: "{{ item.access_vlan }}"
+    state: present
+  with_items:
+    - "{{ l2_interfaces }}"
+  when: role == "leaf"
 
 - name: ENABLE OSPF
   nxos_ospf:
