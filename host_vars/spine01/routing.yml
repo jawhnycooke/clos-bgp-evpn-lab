@@ -16,8 +16,8 @@ ospf_area: 0.0.0.0
 ospf_interfaces:
   - "Loopback0"
   - "Loopback1"
-  - "Ethernet2/1"
-  - "Ethernet2/2"
+  - "Ethernet1/1"
+  - "Ethernet1/2"
 
 # nxos_pim #
 pim_ssm_range: "232.0.0.0"
@@ -32,5 +32,5 @@ pim_group-list_mask: "4"
 pim_interfaces:
   - "Loopback0"
   - "Loopback1"
-  - "Ethernet2/1"
-  - "Ethernet2/2"
+  - "Ethernet1/1"
+  - "Ethernet1/2"

@@ -21,8 +21,8 @@ ospf_proc_id: 1
 ospf_area: 0.0.0.0
 ospf_interfaces:
   - { interface: "Loopback0" }
-  - { interface: "Ethernet2/14" }
-  - { interface: "Ethernet2/15" }
+  - { interface: "Ethernet1/7" }
+  - { interface: "Ethernet1/8" }
 
 # nxos_pim #
 pim_ssm_range: "232.0.0.0"
