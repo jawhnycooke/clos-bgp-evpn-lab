@@ -58,9 +58,9 @@
 
 - name: Add Server interfaces to VLANs and check intent (config + intent)
   nxos_vlan:
-    vlan_id: {{ item.access_vlan }}
-    interfaces: {{ item.name }}
-    associated_interfaces: {{ item.name }}
+    vlan_id: "{{ item.access_vlan }}"
+    interfaces: "{{ item.name }}"
+    associated_interfaces: "{{ item.name }}"
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
