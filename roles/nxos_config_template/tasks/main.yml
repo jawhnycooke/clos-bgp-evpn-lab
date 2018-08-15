@@ -23,7 +23,6 @@
   nxos_system:
     system_mtu: 9216
 
-
 #- name: Logging Configuration
 #  nxos_config:
 #    lines:
@@ -50,11 +49,11 @@
   with_items:
     - "{{ l3_interfaces }}"
 
-#- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE SWITCH
-#  nxos_vlan:
-#    vlan_range: "1-1002"
-#    state: present
-#  when: role == "leaf"
+- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE SWITCH
+  nxos_vlan:
+    vlan_range: "1-1002"
+    state: present
+  when: role == "leaf"
 
 - name: ADD SERVER INTERFACES TO VLANs
   nxos_vlan:
@@ -72,16 +71,6 @@
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
-
-#- name: CREATE L2 INTERFACES
-#  nxos_l2_interface:
-#    name: "{{ item.interface }}"
-#    mode: "{{ item.mode }}"
-#    access_vlan: "{{ item.access_vlan }}"
-#    state: present
-#  with_items:
-#    - "{{ l2_interfaces }}"
-#  when: role == "leaf"
 
 - name: ENABLE OSPF
   nxos_ospf:
@@ -109,13 +98,6 @@
     - "{{ anycast_gw_interfaces }}"
   when: role == "leaf"
 
-
-#- name: Assign Anycast GW
-#  nxos_config:
-#    lines: 
-#      - 'fabric forwarding anycast-gateway-mac '
-#  when: role == "leaf"
-
 #- name: Create ACL
 #  nxos_acl:
 #    name: "{{ item.name }}"
@@ -132,13 +114,6 @@
     router_id: "{{ bgp_router_id }}"
     state: present
 
-- name: BASE BGP AF CONFIG
-  nxos_bgp_af:
-    asn: "{{ bgp_asn }}"
-    afi: "{{ item.afi }}"
-    safi: "{{ item.safi }}"
-  with_items: "{{ bgp_address_families }}"
-
 - name: BASE NEIGHBOR CONFIG
   nxos_bgp_neighbor:
     asn: "{{ bgp_asn }}"
@@ -153,7 +128,6 @@
     neighbor: "{{ item.neighbor }}"
     afi: ipv4
     safi: unicast
-    state: present
   with_items: "{{ bgp_neighbors }}"
   when: role == "leaf"
 
