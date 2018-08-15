@@ -7,4 +7,3 @@ l3_interfaces:
   - { interface: "Loopback1", description: "Loopback1 for Anycast RP", ipv4: "100.1.1.1/32" }
   - { interface: "Ethernet2/1", description: "Spine-leaf interconnect leaf01", ipv4: "192.168.3.42/24" }
   - { interface: "Ethernet2/2", description: "Spine-leaf interconnect leaf02", ipv4: "192.168.4.43/24" }
-
