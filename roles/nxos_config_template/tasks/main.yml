@@ -59,7 +59,7 @@
 - name: ADD SERVER INTERFACES TO VLANs
   nxos_vlan:
     vlan_id: "{{ item.access_vlan }}"
-    interfaces: "{{ item.name }}"
+    interfaces: "{{ item.interface }}"
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
