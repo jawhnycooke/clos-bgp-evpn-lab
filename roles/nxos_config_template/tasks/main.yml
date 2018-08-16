@@ -117,7 +117,7 @@
 - name: CONFIGURE ANYCAST RP
   nxos_command:
     commands:
-      - ip pim anycast-rp "{{ item.rp_addr }}"  "{{ item.loopback }}"
+      - ip pim anycast-rp {{ item.rp_addr }}  {{ item.loopback }}
   with_items:
     - "{{ pim_anycast_interfaces }}"
 
