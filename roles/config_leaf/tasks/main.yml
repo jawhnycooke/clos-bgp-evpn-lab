@@ -38,6 +38,23 @@
   nxos_vrf:
     name: "{{ item.name }}"
     vni: "{{ item.vni }}"
+    rd: auto
+  with_items:
+    - "{{ vrfs }}"
+
+- name: CREATE VRF AND CONFIGURE VNI IPV4
+  nxos_vrf_af:
+    vrf: "{{ item.name }}"
+    route_target_both_auto_evpn: true
+    afi: ipv4
+  with_items:
+    - "{{ vrfs }}"
+
+- name: CREATE VRF AND CONFIGURE VNI IPV6
+  nxos_vrf_af:
+    vrf: "{{ item.name }}"
+    route_target_both_auto_evpn: true
+    afi: ipv6
   with_items:
     - "{{ vrfs }}"
 
