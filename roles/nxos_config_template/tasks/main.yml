@@ -19,7 +19,7 @@
   with_items:
     - "{{ name_servers }}"
 
-- name: set port MTU
+- name: SET SYSTEM PORT MTU TO 9216
   nxos_system:
     system_mtu: 9216
 
@@ -115,12 +115,11 @@
     ssm_range: "{{ pim_ssm_range }}"
 
 - name: CONFIGURE ANYCAST RP 100.1.1.1 10.1.1.1
-  nxos_command:
-    commands: ip pim anycast-rp 100.1.1.1 10.1.1.1
-
-- name: CONFIGURE ANYCAST RP 100.1.1.1 20.1.1.1
-  nxos_command:
-    commands: ip pim anycast-rp 100.1.1.1 20.1.1.1
+  nxos_config:
+    lines: 
+      - ip pim anycast-rp 100.1.1.1 10.1.1.1
+      - ip pim anycast-rp 100.1.1.1 20.1.1.1
+    save_when: modified
 
 #- name: Create ACL
 #  nxos_acl:
