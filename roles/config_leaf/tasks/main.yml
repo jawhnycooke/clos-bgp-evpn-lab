@@ -29,10 +29,10 @@
     - "{{ loopback_interfaces }}"
     - "{{ l3_interfaces }}"
 
-#- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE LEAF SWITCH
-#  nxos_vlan:
-#    vlan_range: "1-1002"
-#    state: present
+- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE LEAF SWITCH
+  nxos_vlan:
+    vlan_range: "1-200,900-1002"
+    state: present
 
 - name: CREATE VRF AND CONFIGURE VNI
   nxos_vrf:
