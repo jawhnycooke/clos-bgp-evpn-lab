@@ -55,7 +55,7 @@
     state: present
   when: role == "leaf"
 
-- name: CONFIGURE SERVER INTERFACES AS L2
+- name: CONFIGURE LEAF SERVER INTERFACES AS L2
   nxos_interface:
     name: "{{ item.interface }}"
     description: "{{ item.description }}"
@@ -66,12 +66,16 @@
   tags:
     - l2
 
-- name: ADD SERVER INTERFACES TO VLANs
+- name: ADD LEAF SERVER INTERFACES TO VLANs
   nxos_vlan:
     vlan_id: "{{ item.access_vlan }}"
     interfaces: "{{ item.interface }}"
   loop:
     - "{{ l2_interfaces }}"
+  loop_control:
+    label:
+      - "{{ item.access_vlan }}"
+      - "{{ item.interface }}"
   when: role == "leaf"
   tags:
     - l2
