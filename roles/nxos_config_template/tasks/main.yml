@@ -125,16 +125,16 @@
   tags:
     - bgp
 
-- name: CONFIGURE IPV4 UNICAST ADDRESS FAMILY
-  nxos_bgp_neighbor_af:
-    asn: "{{ bgp_asn }}"
-    neighbor: "{{ item.neighbor }}"
-    afi: ipv4
-    safi: unicast
-  with_items: "{{ bgp_neighbors }}"
-  when: role == "leaf"
-  tags:
-    - bgp
+#- name: CONFIGURE IPV4 UNICAST ADDRESS FAMILY
+#  nxos_bgp_neighbor_af:
+#    asn: "{{ bgp_asn }}"
+#    neighbor: "{{ item.neighbor }}"
+#    afi: ipv4
+#    safi: unicast
+#  with_items: "{{ bgp_neighbors }}"
+#  when: role == "leaf"
+#  tags:
+#    - bgp
 
 - name: CONFIGURE L2VPN UNICAST ADDRESS FAMILY
   nxos_bgp_neighbor_af:
