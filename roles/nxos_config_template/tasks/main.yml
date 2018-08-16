@@ -63,8 +63,6 @@
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
-  tags:
-    - l2
 
 - name: ADD LEAF SERVER INTERFACES TO VLANs
   nxos_vlan:
