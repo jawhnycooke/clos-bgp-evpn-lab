@@ -25,8 +25,7 @@ ospf_interfaces:
   - { interface: "Ethernet1/8" }
 
 # nxos_pim #
-pim_ssm_range: "232.0.0.0"
-pim_ssm_mask: "8"
+pim_ssm_range: "232.0.0.0/8"
 # nxos_pim_rp_address #
 pim_rp_address: "100.1.1.1"
 # nxos_pim_interface #
