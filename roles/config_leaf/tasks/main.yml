@@ -52,7 +52,7 @@
   nxos_config:
     lines:
       - vn-segment {{ item.mapped_vni }}
-    parent:
+    parents:
       - vlan {{ item.vlan_id }}
   with_items:
     - "{{ vlan_mappings }}"
