@@ -68,8 +68,7 @@
   nxos_vlan:
     vlan_id: "{{ item.access_vlan }}"
     interfaces: "{{ item.interface }}"
-  loop:
-    - "{{ l2_interfaces }}"
+  loop: "{{ l2_interfaces }}"
   when: role == "leaf"
   tags:
     - l2
