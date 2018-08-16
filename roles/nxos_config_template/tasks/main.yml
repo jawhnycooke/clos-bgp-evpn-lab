@@ -70,10 +70,6 @@
     interfaces: "{{ item.interface }}"
   loop:
     - "{{ l2_interfaces }}"
-  loop_control:
-    label:
-      - "{{ item.access_vlan }}"
-      - "{{ item.interface }}"
   when: role == "leaf"
   tags:
     - l2
