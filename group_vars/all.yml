@@ -7,7 +7,6 @@ domain_name: mylab.com
 
 name_servers:
   - { server: 8.8.8.8, vrf: management }
-  - { server: 8.8.4.4, vrf: management }
 
 logging:
   - { server: 192.168.122.254, log_level: 6, vrf: management, facility: syslog, source: mgmt0 }
