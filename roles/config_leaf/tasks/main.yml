@@ -54,8 +54,7 @@
       - vn-segment {{ item.mapped_vni }}
     parents:
       - vlan {{ item.vlan_id }}
-  with_items:
-    - "{{ vlan_mappings }}"
+  loop: "{{ vlan_mappings }}"
   tags:
     - mapped
 
