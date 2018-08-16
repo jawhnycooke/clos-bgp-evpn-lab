@@ -64,11 +64,28 @@
     - "{{ l2_interfaces }}"
   when: role == "leaf"
 
+# Not sure why this isn't working
+#- name: ADD LEAF SERVER INTERFACES TO VLANs
+#  nxos_vlan:
+#    vlan_id: "{{ item.access_vlan }}"
+#    interfaces: "{{ item.interface }}"
+#  loop: "{{ l2_interfaces }}"
+#  when: role == "leaf"
+#  tags:
+#    - l2
+
 - name: ADD LEAF SERVER INTERFACES TO VLANs
   nxos_vlan:
-    vlan_id: "{{ item.access_vlan }}"
-    interfaces: "{{ item.interface }}"
-  loop: "{{ l2_interfaces }}"
+    vlan_id: "1002"
+    interfaces: "Ethernet1/1"
+  when: role == "leaf"
+  tags:
+    - l2
+
+- name: ADD LEAF SERVER INTERFACES TO VLANs
+  nxos_vlan:
+    vlan_id: "1001"
+    interfaces: "Ethernet1/2"
   when: role == "leaf"
   tags:
     - l2
