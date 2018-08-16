@@ -14,6 +14,11 @@ features:
   - { feature:  nv overlay }
   - { feature:  vn-segment-vlan-based }
 
+vlan_mappings:
+  - { vlan_id: "101", mapped_vni: "900001", name: "Maps vlan 101 to VNI 900001" }
+  - { vlan_id: "1001", mapped_vni: "2001001", name: "Maps vlan 1001 to VNI 2001001" }
+  - { vlan_id: "1002", mapped_vni: "2001002", name: "Maps vlan 1002 to VNI 2001002" }
+
 acls:
   - { name: SNMP-RO-NMNET, remark: '+----------------------------------------------------------------------', seq 10, action: remark}
   - { name: SNMP-RO-NMNET, remark: '+ SNMP Read-Only Acesss (NMNET)', seq 20, action: remark}

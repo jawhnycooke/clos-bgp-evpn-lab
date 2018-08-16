@@ -34,6 +34,9 @@ pim_interfaces:
   - { interface: "Ethernet1/8" }
   - { interface: "Ethernet1/9" }
 
+vrfs:
+  - { name: "vxlan-900001", vni: "900001" }
+
 ## module nxos_evpn_vni ##
 evpn:                                       
   - {vni: "2001001", rd: auto, rt_both: "auto" }

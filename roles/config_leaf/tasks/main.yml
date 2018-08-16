@@ -29,10 +29,25 @@
     - "{{ loopback_interfaces }}"
     - "{{ l3_interfaces }}"
 
-- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE SWITCH
+- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE LEAF SWITCH
   nxos_vlan:
     vlan_range: "1-1002"
     state: present
+
+- name: Create VRF and configure VNI
+  nxos_vrf:
+    name: "{{ item.name }}"
+    vni: "{{ item.vni }}"
+  with_items:
+    - "{{ vrfs }}"
+
+- name: Create overlay VRF VLAN and configure vn-segment
+  nxos_vlan:
+    vlan_id: "{{ item.vlan_id }}"
+    mapped_vni: "{{ item.mapped_vni }}"
+    name: "{{ item.name }}"
+  with_items:
+    - "{{ vlan_mappings }}"
 
 - name: CONFIGURE LEAF SERVER INTERFACES AS L2
   nxos_interface:
@@ -43,7 +58,7 @@
   with_items:
     - "{{ l2_interfaces }}"
 
-- name: ADD LEAF SERVER INTERFACES TO VLANs
+- name: ADD SERVER INTERFACES TO VLANs
   nxos_vlan:
     vlan_id: "{{ item.access_vlan }}"
     interfaces: "{{ item.interface }}"
