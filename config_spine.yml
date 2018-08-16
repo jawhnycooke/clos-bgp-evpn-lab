@@ -1,7 +1,8 @@
 ---
-- hosts: all
+- hosts: spine
   connection: network_cli
   gather_facts: no
 
   roles:
-    - nxos_config_template
+    - config_system
+    - config_spine
