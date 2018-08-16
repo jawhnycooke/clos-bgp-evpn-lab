@@ -112,15 +112,18 @@
   nxos_bgp:
     asn: "{{ bgp_asn }}"
     router_id: "{{ bgp_router_id }}"
-    state: present
+  Tags:
+    - bgp
 
 - name: BASE NEIGHBOR CONFIG
   nxos_bgp_neighbor:
     asn: "{{ bgp_asn }}"
     neighbor: "{{ item.neighbor }}"
     remote_as: "{{ item.remote_as }}"
-    state: present
+    update_source: "Loopback0"
   with_items: "{{ bgp_neighbors }}"
+  Tags:
+    - bgp
 
 - name: CONFIGURE IPV4 UNICAST ADDRESS FAMILY
   nxos_bgp_neighbor_af:
@@ -130,6 +133,8 @@
     safi: unicast
   with_items: "{{ bgp_neighbors }}"
   when: role == "leaf"
+  Tags:
+    - bgp
 
 - name: CONFIGURE L2VPN UNICAST ADDRESS FAMILY
   nxos_bgp_neighbor_af:
@@ -140,5 +145,7 @@
     send_community: both
     route_reflector_client: true
   with_items: "{{ bgp_neighbors }}"
+  Tags:
+    - bgp
 
 
