@@ -85,6 +85,14 @@
   with_items:
     - "{{ ospf_interfaces }}"
 
+- name: ADD PIM SPARSE MODE TO INTERFACES
+  nxos_pim_interface:
+    interface: "{{ item.interface }}"
+    sparse: yes
+  with_items:
+    - "{{ pim_interfaces }}"
+
+
 - name: ASSIGN ANYCAST GATEWAY
   nxos_overlay_global:
     anycast_gateway_mac: "0000.2222.3333"
