@@ -48,6 +48,17 @@
   with_items:
     - "{{ vlan_mappings }}"
 
+- name: CREATE OVERLAY VRF VLAN AND VN-SEGMENT
+  nxos_config:
+    lines:
+      - vn-segment {{ item.mapped_vni }}
+    parent:
+      - vlan {{ item.vlan_id }}
+  with_items:
+    - "{{ vlan_mappings }}"
+  tags:
+    - mapped
+
 - name: CONFIGURE LEAF SERVER INTERFACES AS L2
   nxos_interface:
     name: "{{ item.interface }}"
