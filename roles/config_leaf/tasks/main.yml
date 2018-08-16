@@ -29,10 +29,10 @@
     - "{{ loopback_interfaces }}"
     - "{{ l3_interfaces }}"
 
-- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE LEAF SWITCH
-  nxos_vlan:
-    vlan_range: "1-200,900-1002"
-    state: present
+#- name: ENSURE VLANs 1-1002 ARE PRESENT ON THE LEAF SWITCH
+#  nxos_vlan:
+#    vlan_range: "1-200,999-1002"
+#    state: present
 
 - name: CREATE VRF AND CONFIGURE VNI
   nxos_vrf:
@@ -113,13 +113,6 @@
 - name: CONFIGURE PIM SSM RANGE
   nxos_pim:
     ssm_range: "{{ pim_ssm_range }}"
-
-- name: CONFIGURE ANYCAST RP 100.1.1.1 10.1.1.1
-  nxos_config:
-    lines: 
-      - ip pim anycast-rp 100.1.1.1 10.1.1.1
-      - ip pim anycast-rp 100.1.1.1 20.1.1.1
-    save_when: modified
 
 - name: ENSURE BGP ASN EXISTS
   nxos_bgp:
