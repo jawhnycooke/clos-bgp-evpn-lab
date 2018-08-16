@@ -19,7 +19,7 @@
   with_items:
     - "{{ name_servers }}"
 
-- name: SET SYSTEM PORT MTU TO 9216
+- name: SET SYSTEM JUMBO MTU TO 9216
   nxos_system:
     system_mtu: 9216
 
@@ -37,6 +37,7 @@
     name: "{{ item.interface }}"
     description: "{{ item.description }}"
     mode: layer3
+    mtu: 9216
   with_items:
     - "{{ l3_interfaces }}"
 
@@ -60,6 +61,7 @@
     name: "{{ item.interface }}"
     description: "{{ item.description }}"
     mode: layer2
+    mtu: 9216
   with_items:
     - "{{ l2_interfaces }}"
   when: role == "leaf"
@@ -138,7 +140,7 @@
   tags:
     - bgp
 
-- name: BASE NEIGHBOR CONFIG
+- name: BGP NEIGHBOR CONFIG
   nxos_bgp_neighbor:
     asn: "{{ bgp_asn }}"
     neighbor: "{{ item.neighbor }}"
@@ -170,5 +172,3 @@
   with_items: "{{ bgp_neighbors }}"
   tags:
     - bgp
-
-
