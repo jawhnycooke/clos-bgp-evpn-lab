@@ -64,7 +64,6 @@
     - "{{ l2_interfaces }}"
   when: role == "leaf"
 
- Not sure why this isn't working
 - name: ADD LEAF SERVER INTERFACES TO VLANs
   nxos_vlan:
     vlan_id: "{{ item.access_vlan }}"
