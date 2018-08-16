@@ -107,7 +107,7 @@
 
 - name: CONFIGURE ANYCAST RP
   nxos_pim_rp_address:
-    interface: "{{ pim_rp_address }}"
+    rp_address: "{{ pim_rp_address }}"
     group_list: "{{ pim_group_list }}"
 
 - name: CONFIGURE PIM SSM RANGE
