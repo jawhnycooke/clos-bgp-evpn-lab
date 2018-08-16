@@ -105,7 +105,7 @@
     - "{{ anycast_gw_interfaces }}"
   when: role == "leaf"
 
-- name: CONFIGURE ANYCAST RP
+- name: CONFIGURE ANYCAST RP ADDRESS
   nxos_pim_rp_address:
     rp_address: "{{ pim_rp_address }}"
     group_list: "{{ pim_group_list }}"
@@ -113,6 +113,13 @@
 - name: CONFIGURE PIM SSM RANGE
   nxos_pim:
     ssm_range: "{{ pim_ssm_range }}"
+
+- name: CONFIGURE ANYCAST RP
+  nxos_command:
+    lines:
+      - ip pim anycast-rp "{{ item.rp_addr }}"  "{{ item.loopback }}"
+  with_items:
+    - "{{ pim_anycast_interfaces }}"
 
 #- name: Create ACL
 #  nxos_acl:
