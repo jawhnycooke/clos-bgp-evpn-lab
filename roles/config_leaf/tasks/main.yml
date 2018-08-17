@@ -39,7 +39,8 @@
     name: "{{ item.name }}"
     vni: "{{ item.vni }}"
     interfaces: "{{ item.interfaces }}"
-    rd: auto
+    rd: "auto"
+    rt_both: "auto"
   with_items:
     - "{{ vrfs }}"
 
