@@ -21,8 +21,8 @@ ospf_proc_id: 1
 ospf_area: 0.0.0.0
 ospf_interfaces:
   - { interface: "Loopback0" }
-  - { interface: "Ethernet1/7" }
   - { interface: "Ethernet1/8" }
+  - { interface: "Ethernet1/9" }
 
 # nxos_pim #
 pim_ssm_range: "232.0.0.0/8"
@@ -34,9 +34,9 @@ pim_interfaces:
   - { interface: "Ethernet1/9" }
 
 vrfs:
-  - { name: "vxlan-900001", vni: "900001", interfaces: "Vlan101" }
-  - { name: "vxlan-900001", vni: "900001", interfaces: "Vlan1001" }
-  - { name: "vxlan-900001", vni: "900001", interfaces: "Vlan1002" }
+  - { name: "vxlan-900001", vni: "900001", interfaces: "Vlan101", vlan_id: "101" }
+  - { name: "vxlan-900001", vni: "900001", interfaces: "Vlan1001", vlan_id: "1001" }
+  - { name: "vxlan-900001", vni: "900001", interfaces: "Vlan1002", vlan_id: "1002" }
 
 
 ## module nxos_evpn_vni ##
