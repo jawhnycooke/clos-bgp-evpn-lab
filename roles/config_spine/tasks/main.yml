@@ -19,6 +19,14 @@
   with_items:
     - "{{ l3_interfaces }}"
 
+- name: CONFIGURE LOOPBACK INTERFACES AS L3
+  nxos_interface:
+    name: "{{ item.interface }}"
+    description: "{{ item.description }}"
+    mode: layer3
+  with_items:
+    - "{{ loopback_interfaces }}"
+
 - name: CREATE L3 IP INTERFACES
   nxos_l3_interface:
     name: "{{ item.interface }}"
