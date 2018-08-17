@@ -38,10 +38,17 @@
   nxos_vrf:
     name: "{{ item.name }}"
     vni: "{{ item.vni }}"
-    interfaces: "{{ item.interfaces }}"
     rd: "auto"
   with_items:
     - "{{ vrfs }}"
+
+- name: ADD INTERFACES TO VRF
+  nxos_config:
+    lines: 
+      - vrf member "{{ item.name }}"
+    parents: interface "{{ item.interfaces }}"
+    saved_when: modified
+  loop: "{{ vrfs }}"
 
 - name: CREATE VRF AND CONFIGURE VNI IPV4
   nxos_vrf_af:
