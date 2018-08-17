@@ -38,6 +38,7 @@
   nxos_vrf:
     name: "{{ item.name }}"
     vni: "{{ item.vni }}"
+    interfaces: "{{ item.interfaces }}"
     rd: auto
   with_items:
     - "{{ vrfs }}"
