@@ -47,7 +47,6 @@
     lines: 
       - vrf member "{{ item.name }}"
     parents: interface "{{ item.interfaces }}"
-    saved_when: modified
   loop: "{{ vrfs }}"
 
 - name: CREATE VRF AND CONFIGURE VNI IPV4
