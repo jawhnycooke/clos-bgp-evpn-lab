@@ -45,8 +45,8 @@
 - name: ADD INTERFACES TO VRF
   nxos_config:
     lines: 
-      - vrf member "{{ item.name }}"
-    parents: interface "{{ item.interfaces }}"
+      - vrf member {{ item.name }}
+    parents: interface {{ item.interfaces }}
     save_when: modified
   loop: "{{ vrfs }}"
 
