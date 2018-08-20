@@ -214,13 +214,11 @@
 - name: ASSOCIATE VNI 2001001 WITH NVE INTERFACE 
   nxos_vxlan_vtep_vni:
     interface: nve1
-    assoc_vrf: true
     multicast_group: 239.0.0.1
     vni: 2001001
 
 - name: ASSOCIATE VNI 2001002 WITH NVE INTERFACE 
   nxos_vxlan_vtep_vni:
     interface: nve1
-    assoc_vrf: true
     multicast_group: 239.0.0.1
     vni: 2001002
