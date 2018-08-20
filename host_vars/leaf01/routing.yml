@@ -1,6 +1,8 @@
 ---
 role: leaf
 
+hostname: leaf01
+
 bgp_asn: 65535
 bgp_router_id: 30.1.1.1
 

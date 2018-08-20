@@ -6,3 +6,7 @@
   roles:
     - config_system
     - config_leaf
+    - config_ospf
+    - config_leaf_anycast
+    - config_leaf_bgp
+#    - config_leaf_nve

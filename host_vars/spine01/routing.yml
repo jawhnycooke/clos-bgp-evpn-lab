@@ -1,6 +1,8 @@
 ---
 role: spine
 
+hostname: spine01
+
 ##### BGP VARS ######
 bgp_asn: 65535
 
