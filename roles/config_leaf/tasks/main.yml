@@ -222,6 +222,7 @@
   nxos_evpn_vni:
     vni: 2001001
     route_distinguisher: auto
+    route_target_both: auto
     route_target_export: auto
     route_target_import: auto
   tags: evpn
@@ -230,6 +231,7 @@
   nxos_evpn_vni:
     vni: 2001002
     route_distinguisher: auto
+    route_target_both: auto
     route_target_export: auto
     route_target_import: auto
   tags: evpn
