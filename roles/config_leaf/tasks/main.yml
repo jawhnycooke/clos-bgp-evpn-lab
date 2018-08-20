@@ -196,13 +196,6 @@
     source_interface: loopback0
   tags: nve
 
-#- name: ASSOCIATE NVE WITH VRF 
-#  nxos_vxlan_vtep_vni:
-#    interface: nve1
-#    ingress_replication: bgp
-#    vni: 900001
-#  tags: nve
-
 - name: ASSOCIATE NVE WITH VRF 
   nxos_vxlan_vtep_vni:
     interface: nve1

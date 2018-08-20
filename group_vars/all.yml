@@ -5,6 +5,8 @@ ansible_ssh_pass: admin
 
 domain_name: mylab.com
 
+system_image: "nxos.7.0.3.I6.1.bin"
+
 name_servers:
   - { server: 8.8.8.8, vrf: management }
 
