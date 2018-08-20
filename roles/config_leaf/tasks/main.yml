@@ -194,6 +194,7 @@
     interface: nve1
     host_reachability: true
     source_interface: loopback0
+    state: present
   tags: nve
 
 - name: ASSOCIATE NVE WITH VRF 
@@ -216,3 +217,19 @@
     multicast_group: 239.0.0.1
     vni: 2001002
   tags: nve
+
+- name: CONFIGURE EVPN AS L2
+  nxos_evpn_vni:
+    vni: 2001001
+    route_distinguisher: auto
+    route_target_export: true
+    route_target_import: true
+    state: present
+
+- name: CONFIGURE EVPN AS L2
+  nxos_evpn_vni:
+    vni: 2001002
+    route_distinguisher: auto
+    route_target_export: true
+    route_target_import: true
+    state: present
