@@ -1,16 +1,16 @@
 ---
 features:
   - { feature:  nxapi }
-#  - { feature:  tacacs+ }
-  - { feature:  scheduler }
   - { feature:  ospf }
   - { feature:  bgp }
   - { feature:  pim }
-#  - { feature:  interface-vlan }
-  - { feature:  lldp }
-#  - { feature:  bfd }
   - { feature:  nv overlay }
   - { feature:  vn-segment-vlan-based }
+#  - { feature:  tacacs+ }
+#  - { feature:  scheduler }
+#  - { feature:  interface-vlan }
+#  - { feature:  lldp }
+#  - { feature:  bfd }
 
 acls:
   - { name: SNMP-RO-NMNET, remark: '+----------------------------------------------------------------------', seq 10, action: remark}

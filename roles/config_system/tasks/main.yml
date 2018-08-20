@@ -16,7 +16,7 @@
 #  check_mode: no
 #  nxos_install_os:
 #    system_image_file: "{{ system_image }}"
-#    issu: desired
+#    issu: no
 
 - name: ENABLE NECESSARY FEATURES
   nxos_feature:
