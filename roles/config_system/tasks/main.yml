@@ -11,6 +11,15 @@
   with_items:
     - "{{ name_servers }}"
 
+- name: ENABLE NECESSARY FEATURES
+  nxos_feature:
+    feature: "{{ item.feature }}"
+  with_items: "{{ features }}"
+
+- name: ENABLE NV OVERLAY EVPN
+  nxos_evpn_global:
+    nv_overlay_evpn: true
+
 - name: SET SYSTEM JUMBO MTU TO 9216
   nxos_system:
     system_mtu: 9216

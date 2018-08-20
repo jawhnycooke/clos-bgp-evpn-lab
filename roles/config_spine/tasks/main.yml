@@ -1,15 +1,6 @@
 ---
 # tasks file for config_spine
 
-- name: ENABLE NECESSARY FEATURES
-  nxos_feature:
-    feature: "{{ item.feature }}"
-  with_items: "{{ features }}"
-
-- name: ENABLE NV OVERLAY EVPN
-  nxos_evpn_global:
-    nv_overlay_evpn: true
-
 - name: CONFIGURE ETHERNET INTERFACES AS L3
   nxos_interface:
     name: "{{ item.interface }}"
@@ -111,3 +102,4 @@
   with_items: "{{ bgp_neighbors }}"
   tags:
     - bgp
+
