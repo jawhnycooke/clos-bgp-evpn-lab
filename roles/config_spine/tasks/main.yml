@@ -53,7 +53,8 @@
   nxos_config:
     lines: 
       - medium p2p
-      - ip ospf network point-to-point Loopback0
+      - ip ospf network point-to-point
+      - ip unnumbered loopback0
     parents: 
       - interface {{ ospf_unnumbered_interfaces }}
   with_items:
