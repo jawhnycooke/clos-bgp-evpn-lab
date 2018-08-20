@@ -15,12 +15,13 @@ bgp_neighbors:
 bgp_inerfaces:  
   - { interface: vrf vxlan-900001, afi: ipv4, safi: unicast }
 
-# nxos_ospf #
+##### OSPF CONFIG VARS #####
 ospf_proc_id: 1
-# nxos_interface_ospf #
 ospf_area: 0.0.0.0
-ospf_interfaces:
+ospf_loopback:
   - { interface: "Loopback0" }
+
+ospf_unnumbered_interfaces:
   - { interface: "Ethernet1/8" }
   - { interface: "Ethernet1/9" }
 

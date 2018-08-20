@@ -1,6 +1,6 @@
 ---
 features:
-  - { feature:  nxapi }
+#  - { feature:  nxapi }
 #  - { feature:  tacacs+ }
   - { feature:  scheduler }
   - { feature:  ospf }
