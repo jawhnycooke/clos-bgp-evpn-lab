@@ -11,11 +11,12 @@
   with_items:
     - "{{ name_servers }}"
 
-- name: SET SYSTEM IMAGE
-  check_mode: no
-  nxos_install_os:
-    system_image_file: "{{ system_image }}"
-    issu: desired
+# TAKES FOREVER DO NOT USE IN THE LAB
+#- name: SET SYSTEM IMAGE
+#  check_mode: no
+#  nxos_install_os:
+#    system_image_file: "{{ system_image }}"
+#    issu: desired
 
 - name: ENABLE NECESSARY FEATURES
   nxos_feature:
