@@ -80,9 +80,8 @@
   nxos_config:
     lines: 
       - ip pim anycast-rp {{ item.rp_addr }} {{ item.loopback }}
-      - ip pim anycast-rp {{ item.rp_addr }} {{ item.loopback }}
     save_when: modified
-  with_items: "{{ pim_anycast_interfaces }}"
+  loop: "{{ pim_anycast_interfaces }}"
 
 - name: ENSURE BGP ASN EXISTS
   nxos_bgp:

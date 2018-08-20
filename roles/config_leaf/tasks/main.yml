@@ -197,3 +197,30 @@
   with_items: "{{ bgp_neighbors }}"
   tags:
     - bgp
+
+- name: Create the network virtualization endpoint (NVE) interface
+  nxos_vxlan_vtep:
+    interface: nve1
+    host_reachability: true
+    source_interface: loopback0
+
+- name: ASSOCIATE NVE WITH VRF 
+  nxos_vxlan_vtep_vni:
+    interface: nve1
+    assoc_vrf: true
+    vni: 900001
+    ingress_replication: bgp
+
+- name: ASSOCIATE VNI 2001001 WITH NVE INTERFACE 
+  nxos_vxlan_vtep_vni:
+    interface: nve1
+    assoc_vrf: true
+    multicast_group: 239.0.0.1
+    vni: 2001001
+
+- name: ASSOCIATE VNI 2001002 WITH NVE INTERFACE 
+  nxos_vxlan_vtep_vni:
+    interface: nve1
+    assoc_vrf: true
+    multicast_group: 239.0.0.1
+    vni: 2001002
