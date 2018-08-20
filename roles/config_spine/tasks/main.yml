@@ -53,8 +53,8 @@
   nxos_config:
     lines: 
       - medium p2p
-      - ip ospf network point-to-point "{{ item.interface }}"
-    parents: interface "{{ ospf_unnumbered_interfaces }}"
+      - ip ospf network point-to-point {{ item.interface }}
+    parents: interface {{ ospf_unnumbered_interfaces }}
   with_items:
     - "{{ ospf_unnumbered_interfaces }}"
 
