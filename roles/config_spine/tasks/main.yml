@@ -76,12 +76,13 @@
   nxos_pim:
     ssm_range: "{{ pim_ssm_range }}"
 
-- name: CONFIGURE ANYCAST RP 100.1.1.1 10.1.1.1
+- name: CONFIGURE ANYCAST RP MAPPING
   nxos_config:
     lines: 
-      - ip pim anycast-rp 100.1.1.1 10.1.1.1
-      - ip pim anycast-rp 100.1.1.1 20.1.1.1
+      - ip pim anycast-rp {{ item.rp_addr }} {{ item.loopback }}
+      - ip pim anycast-rp {{ item.rp_addr }} {{ item.loopback }}
     save_when: modified
+  with_items: "{{ pim_anycast_interfaces }}"
 
 - name: ENSURE BGP ASN EXISTS
   nxos_bgp:
