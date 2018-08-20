@@ -128,7 +128,7 @@
       - ip ospf network point-to-point
       - ip unnumbered loopback0
     parents: 
-      - interface {{ ospf_unnumbered_interfaces }}
+      - interface {{ item.interface }}
   with_items:
     - "{{ ospf_unnumbered_interfaces }}"
 
