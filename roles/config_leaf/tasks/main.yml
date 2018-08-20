@@ -130,6 +130,15 @@
   with_items:
     - "{{ pim_interfaces }}"
 
+- name: CONFIGURE ANYCAST RP ADDRESS
+  nxos_pim_rp_address:
+    rp_address: "{{ pim_rp_address }}"
+    group_list: "{{ pim_group_list }}"
+
+- name: CONFIGURE PIM SSM RANGE
+  nxos_pim:
+    ssm_range: "{{ pim_ssm_range }}"
+
 - name: ASSIGN ANYCAST GATEWAY
   nxos_overlay_global:
     anycast_gateway_mac: "0000.2222.3333"
@@ -140,15 +149,6 @@
     fabric_forwarding_anycast_gateway: yes
   with_items:
     - "{{ anycast_gw_interfaces }}"
-
-- name: CONFIGURE ANYCAST RP ADDRESS
-  nxos_pim_rp_address:
-    rp_address: "{{ pim_rp_address }}"
-    group_list: "{{ pim_group_list }}"
-
-- name: CONFIGURE PIM SSM RANGE
-  nxos_pim:
-    ssm_range: "{{ pim_ssm_range }}"
 
 - name: ENSURE BGP ASN EXISTS
   nxos_bgp:
@@ -194,13 +194,13 @@
     interface: nve1
     host_reachability: true
     source_interface: loopback0
+    ingress_replication: bgp
 
 - name: ASSOCIATE NVE WITH VRF 
   nxos_vxlan_vtep_vni:
     interface: nve1
     assoc_vrf: true
     vni: 900001
-    ingress_replication: bgp
 
 - name: ASSOCIATE VNI 2001001 WITH NVE INTERFACE 
   nxos_vxlan_vtep_vni:
