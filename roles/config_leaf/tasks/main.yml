@@ -224,7 +224,7 @@
     route_distinguisher: auto
     route_target_export: auto
     route_target_import: auto
-    state: present
+  tags: evpn
 
 - name: CONFIGURE EVPN AS L2
   nxos_evpn_vni:
@@ -232,4 +232,4 @@
     route_distinguisher: auto
     route_target_export: auto
     route_target_import: auto
-    state: present
+  tags: evpn
