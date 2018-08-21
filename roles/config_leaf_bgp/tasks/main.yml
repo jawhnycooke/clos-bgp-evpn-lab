@@ -17,8 +17,8 @@
   nxos_bgp_af:
     asn: "{{ bgp_asn }}"
     vrf: "{{ item.interface }}"
-    afi: {{ item.afi }}
-    safi: {{ item.safi }}
+    afi: "{{ item.afi }}"
+    safi: "{{ item.safi }}"
     advertise_l2vpn_evpn: true
     state: present
   with_items: "{{ bgp_interfaces }}"
