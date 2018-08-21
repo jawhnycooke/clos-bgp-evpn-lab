@@ -23,3 +23,7 @@ l3_ospf_uplink_interfaces:
 anycast_gw_interfaces:
   - { interface: "Vlan1001" }
   - { interface: "Vlan1002" }
+
+control_vlan_interface:
+  - { interface: "Vlan101", description: "Internal control VLAN/SVI for the VRF", mode: "access", access_vlan: "101", vrf_member: "vxlan-900001" }
+

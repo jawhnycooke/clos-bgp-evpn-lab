@@ -96,7 +96,6 @@
     parents: interface {{ item.interface }}
     save_when: changed
   loop: "{{ l2_interfaces }}"
-  ignore_errors: true
 
 - name: Create the network virtualization endpoint (NVE) interface
   nxos_vxlan_vtep:
