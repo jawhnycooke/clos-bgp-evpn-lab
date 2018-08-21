@@ -13,12 +13,14 @@
     update_source: "Loopback0"
   with_items: "{{ bgp_neighbors }}"
 
-- name: CONFIGURE IPV4 UNICAST ADDRESS FAMILY
-  nxos_bgp_neighbor_af:
+- name: ADD VRF TO BGP AF
+  nxos_bgp_af:
     asn: "{{ bgp_asn }}"
-    neighbor: "{{ item.neighbor }}"
+    vrf: "{{ item.interface }}"
     afi: ipv4
     safi: unicast
+    advertise_l2vpn_evpn: true
+    state: present
   with_items: "{{ bgp_neighbors }}"
 
 - name: CONFIGURE L2VPN UNICAST ADDRESS FAMILY

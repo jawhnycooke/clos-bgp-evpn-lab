@@ -14,8 +14,8 @@ bgp_neighbors:
   - { remote_as: 65535, neighbor: 10.1.1.1, update_source: "loopback0", afi: l2vpn, safi: evpn, send_community: "both", rr_client: true }
   - { remote_as: 65535, neighbor: 20.1.1.1, update_source: "loopback0", afi: l2vpn, safi: evpn, send_community: "both", rr_client: true }
 
-bgp_inerfaces:  
-  - { interface: vrf vxlan-900001, afi: ipv4, safi: unicast }
+bgp_interfaces:  
+  - { interface: vxlan-900001, afi: ipv4, safi: unicast }
 
 ##### OSPF CONFIG VARS #####
 ospf_proc_id: 1
