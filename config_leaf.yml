@@ -9,4 +9,4 @@
     - config_ospf
     - config_leaf_anycast
     - config_leaf_bgp
-#    - config_leaf_nve
+    - config_leaf_nve
