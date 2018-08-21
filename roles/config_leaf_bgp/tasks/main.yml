@@ -17,11 +17,11 @@
   nxos_bgp_af:
     asn: "{{ bgp_asn }}"
     vrf: "{{ item.interface }}"
-    afi: ipv4
-    safi: unicast
+    afi: {{ item.afi }}
+    safi: {{ item.safi }}
     advertise_l2vpn_evpn: true
     state: present
-  with_items: "{{ bgp_neighbors }}"
+  with_items: "{{ bgp_interfaces }}"
 
 - name: CONFIGURE L2VPN UNICAST ADDRESS FAMILY
   nxos_bgp_neighbor_af:
