@@ -40,6 +40,14 @@
     vlan_range: "1,101,1001,1002"
     state: present
 
+- name: ENABLE IP FORWARDING ON VLAN 101
+  nxos_config:
+    lines: 
+      - ip forward
+    parents: 
+      - interface Vlan101
+    save_when: modified
+
 - name: CREATE VRF AND CONFIGURE VNI
   nxos_vrf:
     name: "{{ item.name }}"
@@ -90,7 +98,7 @@
     parents: 
       - vrf context {{ item.name }}
       - rd auto
-      - address-family ipv unicast
+      - address-family ipv6 unicast
     save_when: modified
   loop: "{{ vrfs }}"
 
