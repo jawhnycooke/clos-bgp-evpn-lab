@@ -40,8 +40,16 @@
     vlan_range: "1,101,1001,1002"
     state: present
 
+- name: ENABLE IP FORWARDING ON VLAN 101
+  nxos_config:
+    lines: 
+      - ip forward
+    parents: 
+      - interface Vlan101
+    save_when: modified
+
 - name: CREATE VRF AND CONFIGURE VNI
-  nxos_vrf:
+  nxos_config:
     name: "{{ item.name }}"
     vni: "{{ item.vni }}"
     rd: "auto"
@@ -64,6 +72,17 @@
   with_items:
     - "{{ vrfs }}"
 
+- name: ADD ROUTE-TARGET AUTO TO IPV4 ADDRESS FAMILY
+  nxos_config:
+    lines: 
+      - route-target both auto
+    parents: 
+      - vrf context {{ item.name }}
+      - rd auto
+      - address-family ipv4 unicast
+    save_when: modified
+  loop: "{{ vrfs }}"
+
 - name: CREATE VRF AND CONFIGURE VNI IPV6
   nxos_vrf_af:
     vrf: "{{ item.name }}"
@@ -71,6 +90,17 @@
     afi: ipv6
   with_items:
     - "{{ vrfs }}"
+
+- name: ADD ROUTE-TARGET AUTO TO IPV6 ADDRESS FAMILY
+  nxos_config:
+    lines: 
+      - route-target both auto
+    parents: 
+      - vrf context {{ item.name }}
+      - rd auto
+      - address-family ipv6 unicast
+    save_when: modified
+  loop: "{{ vrfs }}"
 
 - name: CREATE OVERLAY VRF VLAN AND VN-SEGMENT
   nxos_vlan:
