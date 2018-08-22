@@ -49,7 +49,7 @@
     save_when: modified
 
 - name: CREATE VRF AND CONFIGURE VNI
-  nxos_config:
+  nxos_vrf:
     name: "{{ item.name }}"
     vni: "{{ item.vni }}"
     rd: "auto"
